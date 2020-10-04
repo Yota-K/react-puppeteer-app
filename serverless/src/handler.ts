@@ -1,0 +1,15 @@
+import { Context } from 'aws-lambda';
+import { main } from './main';
+import { LambdaEvent } from './types';
+
+export const handler = async (event: LambdaEvent, context: Context) => {
+  const url = event.url;
+
+  if (!url) throw new Error('イベントが設定されていません');
+
+  console.log(url);
+
+  const result = await main(url);
+
+  return context.succeed(result);
+};

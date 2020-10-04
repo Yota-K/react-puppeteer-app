@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  front:
+    container_name: front
+    build: ./docker/front
+    tty: true
+    volumes: 
+      - ./front:/front
+    ports:
+      - 8080:8080
+    command: yarn run start
+
+  serverless:
+    container_name: serverless
+    build: ./docker/serverless
+    tty: true
+    volumes:
+      - ./serverless:/serverless

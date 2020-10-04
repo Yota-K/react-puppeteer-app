@@ -1,0 +1,36 @@
+{
+  "name": "react_portfolio_serverless",
+  "version": "1.0.0",
+  "description": "My React Portfolio Serverless App",
+  "main": "handler.js",
+  "scripts": {
+    "local:invoke": "sls invoke local -f sitePower -p events/event.json",
+    "eslint": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "dependencies": {
+    "chrome-aws-lambda": "^5.3.1",
+    "puppeteer": "^5.3.1",
+    "source-map-support": "^0.5.10"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.63",
+    "@types/node": "^14.11.2",
+    "@types/puppeteer": "^3.0.2",
+    "@types/serverless": "^1.72.5",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "prettier": "^2.1.2",
+    "serverless-webpack": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "author": "Yota-K",
+  "license": "MIT"
+}

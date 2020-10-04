@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "es5",
+    "strict": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ]
+  }
+}

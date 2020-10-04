@@ -1,0 +1,15 @@
+service: react-portfolio
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs12.x
+  memorySize: 512
+  timeout: 60
+
+plugins:
+  - serverless-webpack
+
+functions:
+  sitePower:
+    handler: src/handler.handler
