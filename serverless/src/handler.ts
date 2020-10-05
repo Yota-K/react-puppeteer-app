@@ -7,8 +7,6 @@ export const handler = async (event: LambdaEvent, context: Context) => {
 
   if (!url) throw new Error('イベントが設定されていません');
 
-  console.log(url);
-
   const result = await main(url);
 
   return context.succeed(result);
