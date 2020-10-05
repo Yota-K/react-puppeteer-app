@@ -1,5 +1,14 @@
 import React from 'react';
+import AppHeader from './components/AppHeader';
+import Main from './components/Main';
 
-const App = () => <>Hello World!</>;
+const App = () => {
+  return (
+    <>
+      <AppHeader />
+      <Main />
+    </>
+  );
+}
 
 export default App;
