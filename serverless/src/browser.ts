@@ -12,7 +12,7 @@ export class BrowserSetup {
       executablePath: IS_LOCAL ? '/usr/bin/chromium-browser' : await chromium.executablePath,
       headless: IS_LOCAL ? IS_LOCAL : chromium.headless,
       ignoreHTTPSErrors: true,
-    }
+    };
   }
 
   private async loadFont(): Promise<string> {
@@ -24,7 +24,7 @@ export class BrowserSetup {
     this.loadFont();
 
     const config = await this.config();
-    const browser: Browser = await chromium.puppeteer.launch(config)
+    const browser: Browser = await chromium.puppeteer.launch(config);
 
     return browser;
   }
