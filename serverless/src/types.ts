@@ -3,7 +3,7 @@ export interface LambdaEvent {
 }
 
 export interface ResultObj {
-  searchUrlTitle: string,
+  title: string,
   indexPageNum: number;
   siteInfo: {
     topPageUrl: string;

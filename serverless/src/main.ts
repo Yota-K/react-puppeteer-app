@@ -7,7 +7,7 @@ export const main = async (url: string) => {
   let browser = null;
 
   const baseResult: ResultObj = {
-    searchUrlTitle: '',
+    title: '',
     indexPageNum: 0,
     siteInfo: {
       topPageUrl: '',
@@ -26,7 +26,7 @@ export const main = async (url: string) => {
     await page.goto(url, {
       waitUntil: 'domcontentloaded',
     });
-    const searchUrlTitle = await page.title();
+    const title = await page.title();
     await page.close();
 
     // site:をつけて検索を行う
@@ -54,7 +54,7 @@ export const main = async (url: string) => {
 
     return {
       ...baseResult,
-      searchUrlTitle: searchUrlTitle,
+      title: title,
       indexPageNum: indexPageNum,
       siteInfo: {
         topPageUrl: topPageUrl,
