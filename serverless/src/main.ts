@@ -7,6 +7,7 @@ export const main = async (url: string) => {
   let browser = null;
 
   const baseResult: ResultObj = {
+    searchUrlTitle: '',
     indexPageNum: 0,
     siteInfo: {
       topPageUrl: '',
@@ -19,8 +20,17 @@ export const main = async (url: string) => {
     // MEMO: Pageインスタンスを生成する
     const browserSetup = new BrowserSetup();
     browser = await browserSetup.init();
-    const page = await browser.newPage();
+    let page = await browser.newPage();
 
+    // 入力されたURLのタイトルを取得
+    await page.goto(url, {
+      waitUntil: 'domcontentloaded',
+    });
+    const searchUrlTitle = await page.title();
+    await page.close();
+
+    // site:をつけて検索を行う
+    page = await browser.newPage();
     const resultElement = await googleSearch(page, url);
 
     // MEMO: waitForSelector()は要素が見つからない場合はnullを返す
@@ -44,6 +54,7 @@ export const main = async (url: string) => {
 
     return {
       ...baseResult,
+      searchUrlTitle: searchUrlTitle,
       indexPageNum: indexPageNum,
       siteInfo: {
         topPageUrl: topPageUrl,
