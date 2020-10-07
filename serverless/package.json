@@ -5,6 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "local:invoke": "sls invoke local -f sitePower -p events/event.json",
+    "local:invoke:fail_event": "sls invoke local -f sitePower -p events/fail_event.json",
     "eslint": "eslint src/**/*.ts --fix",
     "format": "prettier --write src/**/*.ts"
   },
