@@ -7,6 +7,7 @@ export const main = async (url: string) => {
   let browser = null;
 
   const baseResult: ResultObj = {
+    searchResult: false,
     title: '',
     indexPageNum: 0,
     siteInfo: {
@@ -17,7 +18,7 @@ export const main = async (url: string) => {
   };
 
   try {
-    // MEMO: Pageインスタンスを生成する
+    // Pageインスタンスを生成する
     const browserSetup = new BrowserSetup();
     browser = await browserSetup.init();
     let page = await browser.newPage();
@@ -25,15 +26,22 @@ export const main = async (url: string) => {
     // 入力されたURLのタイトルを取得
     await page.goto(url, {
       waitUntil: 'domcontentloaded',
+    })
+    .catch((er)=> {
+      console.error(er);
     });
+
     const title = await page.title();
     await page.close();
+
+    // 存在しないURLの場合はその後の処理を行わない
+    if (!title) return baseResult;
 
     // site:をつけて検索を行う
     page = await browser.newPage();
     const resultElement = await googleSearch(page, url);
 
-    // MEMO: waitForSelector()は要素が見つからない場合はnullを返す
+    // Google検索に失敗した場合も処理を中断
     if (!resultElement) return baseResult;
 
     // インデックスされたページの数
@@ -54,6 +62,7 @@ export const main = async (url: string) => {
 
     return {
       ...baseResult,
+      searchResult: true,
       title: title,
       indexPageNum: indexPageNum,
       siteInfo: {
