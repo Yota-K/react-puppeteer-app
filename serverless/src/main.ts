@@ -24,18 +24,20 @@ export const main = async (url: string) => {
     let page = await browser.newPage();
 
     // 入力されたURLのタイトルを取得
-    await page.goto(url, {
+    const eventUrl = await page.goto(url, {
       waitUntil: 'domcontentloaded',
+      timeout: 200
     })
     .catch((er)=> {
       console.error(er);
+      return undefined;
     });
 
-    const title = await page.title();
-    await page.close();
-
     // 存在しないURLの場合はその後の処理を行わない
-    if (!title) return baseResult;
+    if (!eventUrl) return baseResult;
+
+    const title = await page.waitForSelector('title');
+    await page.close();
 
     // site:をつけて検索を行う
     page = await browser.newPage();

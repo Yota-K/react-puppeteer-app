@@ -3,7 +3,7 @@ import { main } from './main';
 import { LambdaEvent } from './types';
 
 export const handler = async (event: LambdaEvent, context: Context) => {
-  const url = event.url;
+  const {url}= event;
 
   if (!url) throw new Error('イベントが設定されていません');
 
