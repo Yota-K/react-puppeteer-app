@@ -6,6 +6,8 @@
   "scripts": {
     "local:invoke": "sls invoke local -f sitePower -p events/event.json",
     "local:invoke:fail_event": "sls invoke local -f sitePower -p events/fail_event.json",
+    "deploy-staging": "sls deploy -v --stage dev",
+    "deploy-production": "sls deploy -v --stage prod",
     "eslint": "eslint src/**/*.ts --fix",
     "format": "prettier --write src/**/*.ts"
   },
