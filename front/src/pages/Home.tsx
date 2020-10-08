@@ -1,9 +1,10 @@
 import React from 'react';
+import SearchForm from '../components/top/SearchForm';
 
 const Home  = () => {
   return (
     <>
-      <p>TEST</p>
+      <SearchForm />
     </>
   );
 }

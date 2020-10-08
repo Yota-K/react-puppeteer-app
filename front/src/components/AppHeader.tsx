@@ -5,8 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+  header: {
+    marginBottom: '40px',
+  },
   heading: {
-    fontSize: '32px',
     fontWeight: 'bold',
     letterSpacing: '0.6px',
   }
@@ -17,10 +19,10 @@ const AppHeader = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.header}>
         <Toolbar>
           <Typography variant="h1" className={classes.heading}>
-            ウェブサイトチェッカー
+            Website Bounty
           </Typography>
         </Toolbar>
       </AppBar>
