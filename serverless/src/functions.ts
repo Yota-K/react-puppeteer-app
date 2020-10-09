@@ -2,18 +2,18 @@ import { Page } from 'puppeteer';
 
 export const getResultElementText = async (
   page: Page, 
-  className: string
+  selector: string
 ) => {
-  const element = await page.waitForSelector(className);
+  const element = await page.waitForSelector(selector);
   const textContent = await element.getProperty('textContent');
   const text = await textContent.jsonValue() as string;
 
-  if (className.indexOf('#result') > -1) {
+  if (selector.indexOf('#result') > -1) {
     const indexPageNum = await conversionIndexPageNum(text);
 
     if (!indexPageNum) return;
 
-    return parseInt(indexPageNum, 10);
+    return indexPageNum;
   }
 
   return text;
@@ -24,5 +24,12 @@ const conversionIndexPageNum = async (indexPageNum: string) => {
 
   if (foundText === null) return;
 
-  return foundText[0];
+  const indexPageNumResult = await removeComma(foundText);
+
+  return indexPageNumResult;
+};
+
+const removeComma = async (numbers: string[]) => {
+  const indexPageNum = numbers[0].replace(/,/g, '');
+  return parseInt(indexPageNum);
 };
