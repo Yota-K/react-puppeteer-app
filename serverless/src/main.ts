@@ -26,17 +26,16 @@ export const main = async (url: string) => {
     // 入力されたURLのタイトルを取得
     const eventUrl = await page.goto(url, {
       waitUntil: 'domcontentloaded',
-      timeout: 200
     })
-    .catch((er)=> {
+    .catch((er) => {
       console.error(er);
-      return undefined;
     });
 
     // 存在しないURLの場合はその後の処理を行わない
     if (!eventUrl) return baseResult;
 
-    const title = await page.waitForSelector('title');
+    const title = await getResultElementText(page, 'title');
+
     await page.close();
 
     // site:をつけて検索を行う
