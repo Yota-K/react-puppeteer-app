@@ -5,6 +5,8 @@ import { LambdaEvent } from './types';
 export const handler = async (event: LambdaEvent, context: Context) => {
   const {url}= event;
 
+  console.info(`event: ${url}`);
+
   if (!url) throw new Error('イベントが設定されていません');
 
   const result = await main(url);
