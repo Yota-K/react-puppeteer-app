@@ -13,7 +13,9 @@ module.exports = {
   // https://webpack.js.org/configuration/watch/
   // https://qiita.com/ayatas/items/e88064cebe6b3d893b0e
   watchOptions: {
+    // MEMO: 最初の変更からここで設定した期間に行われた変更は1度の変更の中で処理が行われる
     aggregateTimeout: 200,
+    // MEMO: ポーリングの間隔
     poll: 1000
   },
   module: {
