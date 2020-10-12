@@ -1,9 +1,16 @@
 import { Context } from 'aws-lambda';
 import { main } from './main';
-import { LambdaEvent } from './types';
 
-export const handler = async (event: LambdaEvent, context: Context) => {
-  const {url}= event;
+// MEMO: 型は後で直す
+export const handler = async (event: any, context: Context) => {
+  let url;
+
+  // API Gatewayから呼び出された場合
+  if (event.queryStringParameters && event.queryStringParameters.url) {
+    url = event.queryStringParameters.url;
+  } else {
+    url = event.url;
+  }
 
   console.info(`event: ${url}`);
 
@@ -11,5 +18,10 @@ export const handler = async (event: LambdaEvent, context: Context) => {
 
   const result = await main(url);
 
-  return context.succeed(result);
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify(result),
+  }
+
+  return response;
 };
