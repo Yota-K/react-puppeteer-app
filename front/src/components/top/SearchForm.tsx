@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +25,23 @@ const useStyles = makeStyles({
 
 const SearchForm = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    const main = async () => {
+      const baseUrl = 'https://6c8aw3f8al.execute-api.ap-northeast-1.amazonaws.com/dev/result?url=';
+      const searchUrl = 'https://www.google.co.jp/';
+
+      try {
+        const res = await axios.get(`${baseUrl}${searchUrl}`);
+        const data = res.data;
+        console.log(data);
+      } catch(er) {
+        console.error(er);
+      }
+    }
+
+    main();
+  }, []);
 
   return (
     <>
