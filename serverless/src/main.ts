@@ -58,7 +58,7 @@ export const main = async (url: string) => {
     const topPageTite = await getResultElementText(page, topPageTiteClassName);
 
     // 一番上に表示されているページのデスクリプション
-    const topPageDescriptionClassName = '#search .g:first-child';
+    const topPageDescriptionClassName = '#search .g:first-child .aCOpRe';
     const topPageDescription = await getResultElementText(page, topPageDescriptionClassName);
 
     return {
