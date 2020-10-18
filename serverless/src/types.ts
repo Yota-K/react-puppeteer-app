@@ -1,5 +1,8 @@
 export interface LambdaEvent {
-  url: string;
+  url?: string;
+  queryStringParameters?: {
+    url: string;
+  },
 }
 
 export interface ResultObj {

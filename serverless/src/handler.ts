@@ -1,11 +1,11 @@
 import { Context } from 'aws-lambda';
 import { main } from './main';
+import { LambdaEvent } from './types';
 
-// MEMO: 型は後で直す
-export const handler = async (event: any, context: Context) => {
+export const handler = async (event: LambdaEvent, context: Context) => {
   let url;
 
-  // API Gatewayから呼び出された場合
+  // API Gatewayから呼び出された場合とLambda経由で呼ばれた場合の分岐
   if (event.queryStringParameters && event.queryStringParameters.url) {
     url = event.queryStringParameters.url;
   } else {
