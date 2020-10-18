@@ -3,19 +3,29 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  margin: {
+    marginTop: '12px',
+    marginBottom: '12px'
+  }
+});
 
 const About: React.FC = () => {
+  const classes = useStyles();
+
   return (
     <Container>
       <Paper>
         <Container maxWidth="md">
           <Typography variant="h1">運営者情報</Typography>
-            <Typography variant="body1">
+            <Typography variant="body1" className={classes.margin}>
               アプリケーションについてアプリケーションについてアプリケーションについて
               アプリケーションについてアプリケーションについてアプリケーションについて
               アプリケーションについてアプリケーションについてアプリケーションについて
             </Typography>
-          <Typography variant="h2">開発者について</Typography>
+          <Typography variant="h2" className={classes.margin}>開発者について</Typography>
             <Typography variant="body1">
               <Link href="https://twitter.com/karukichi_yah">運営者Twitter</Link>
             </Typography>

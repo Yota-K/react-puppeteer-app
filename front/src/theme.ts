@@ -7,12 +7,19 @@ export const theme = createMuiTheme({
     primary: teal,
     secondary: amber,
   },
+  overrides: {
+    MuiPaper: {
+      root: {
+        padding: '12px',
+      },
+    },
+  },
   typography: {
     h1: {
       fontSize: 30,
     },
     h2: {
-      fontSize: 16,
+      fontSize: 20,
     },
     fontSize: 16,
   }
