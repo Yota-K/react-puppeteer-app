@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,7 +23,7 @@ const AppHeader = () => {
       <AppBar position="static" className={classes.header}>
         <Toolbar>
           <Typography variant="h1" className={classes.heading}>
-            Website Bounty
+            <Link href="/" color="inherit" underline="none">Website Bounty</Link>
           </Typography>
         </Toolbar>
       </AppBar>
