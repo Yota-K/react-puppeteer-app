@@ -45,7 +45,7 @@ const SearchForm = () => {
           className={classes.input} 
           placeholder="search..." 
         />
-        <IconButton onClick={() => history.push(`/result/${url}`)} aria-label="search" className={classes.iconButton}>
+        <IconButton onClick={() => history.push(`/result/url?q=${url}`)} aria-label="search" className={classes.iconButton}>
           <SearchIcon />
         </IconButton>
       </Paper>
