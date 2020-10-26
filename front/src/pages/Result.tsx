@@ -33,10 +33,12 @@ const Result = () => {
 
   useEffect(() => {
     const main = async () => {
-      const baseUrl = 'https://6c8aw3f8al.execute-api.ap-northeast-1.amazonaws.com/dev/result?url=';
-
       try {
-        const res = await axios.get(`${baseUrl}${url}`);
+        const res = await axios.get(`${process.env.END_POINT_DEV}${url}`, {
+          headers: {
+            'X-API-KEY': `${process.env.API_KEY_DEV}`,
+          }
+        });
         const data = res.data;
         console.log(data);
       } catch(er) {
