@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.1.5",
     "axios": "^0.20.0",
     "css-loader": "^4.3.0",
+    "dotenv-webpack": "^4.0.0",
     "html-webpack-plugin": "^4.5.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
