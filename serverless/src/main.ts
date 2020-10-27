@@ -10,6 +10,7 @@ export const main = async (url: string) => {
     searchResult: false,
     title: '',
     indexPageNum: 0,
+    screenshot: '',
     siteInfo: {
       topPageUrl: '',
       topPageTite: '',
@@ -35,6 +36,9 @@ export const main = async (url: string) => {
     if (!eventUrl) return baseResult;
 
     const title = await getResultElementText(page, 'title');
+    const screenshot = await page.screenshot({
+      encoding: 'base64'
+    });
 
     await page.close();
 
@@ -66,6 +70,7 @@ export const main = async (url: string) => {
       searchResult: true,
       title: title,
       indexPageNum: indexPageNum,
+      screenshot: screenshot,
       siteInfo: {
         topPageUrl: topPageUrl,
         topPageTitle: topPageTite,
