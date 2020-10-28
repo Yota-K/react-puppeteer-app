@@ -7,6 +7,7 @@ interface Results {
   searchResult: boolean;
   title: string,
   indexPageNum: number;
+  screenshot: string;
   siteInfo: {
     topPageUrl: string;
     topPageTite: string;
@@ -19,6 +20,7 @@ const Result = () => {
     searchResult: false,
     title: '',
     indexPageNum: 0,
+    screenshot: '',
     siteInfo: {
       topPageUrl: '',
       topPageTite: '',
@@ -39,8 +41,8 @@ const Result = () => {
             'X-API-KEY': `${process.env.API_KEY_DEV}`,
           }
         });
-        const data = res.data;
-        console.log(data);
+        const data = await res.data;
+        setResults({...results, ...data});
       } catch(er) {
         console.error(er);
       }
@@ -49,10 +51,14 @@ const Result = () => {
     main();
   }, []);
 
+  const dataImage = `data:image/png;base64,${results.screenshot}`;
+
   return (
     <>
       <p>Result</p>
       <p>{url}</p>
+      <p>{results.indexPageNum}</p>
+      <img src={dataImage} alt="" />
     </>
   );
 }
