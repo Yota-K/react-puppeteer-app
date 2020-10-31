@@ -4,7 +4,9 @@
   "description": "My React Portfolio Front App",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js"
+    "start": "webpack-dev-server --config webpack.config.js",
+    "eslint": "eslint src/**/*.{ts,tsx} --fix",
+    "format": "prettier --write src/**/*.{ts,tsx}"
   },
   "author": "",
   "license": "ISC",
@@ -14,10 +16,17 @@
     "@types/react": "^16.9.50",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
     "axios": "^0.20.0",
     "css-loader": "^4.3.0",
     "dotenv-webpack": "^4.0.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "prettier": "^2.1.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "style-loader": "^1.3.0",
