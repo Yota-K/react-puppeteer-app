@@ -3,7 +3,7 @@ import { Browser, LaunchOptions } from 'puppeteer';
 import { IS_LOCAL } from './config';
 
 export class BrowserSetup {
-  static fontUrl = 'https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf';
+  static fontUrl = 'https://raw.githack.com/minoryorg/Noto-Sans-CJK-JP/master/fonts/NotoSansCJKjp-Regular.ttf';
 
   private async config(): Promise<LaunchOptions> {
     return {
@@ -15,13 +15,13 @@ export class BrowserSetup {
     };
   }
 
-  private async loadFont(): Promise<string> {
-    const font = await chromium.font(BrowserSetup.fontUrl);
+  private loadFont(): Promise<string> {
+    const font = chromium.font(BrowserSetup.fontUrl);
     return font;
   }
 
   public async init(): Promise<Browser> {
-    this.loadFont();
+    await this.loadFont();
 
     const config = await this.config();
     const browser: Browser = await chromium.puppeteer.launch(config);
