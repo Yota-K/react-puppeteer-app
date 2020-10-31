@@ -21,6 +21,9 @@ export const theme = createMuiTheme({
     h2: {
       fontSize: 20,
     },
+    h3: {
+      fontSize: 18,
+    },
     fontSize: 16,
   }
 });
