@@ -30,27 +30,28 @@ const SearchForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
-  }
+  };
 
   // MEMO: ページ遷移に使用。
   const history = useHistory();
 
   return (
     <>
-      <Typography align="center" variant="h2" gutterBottom>URL・ドメインを入力してください</Typography>
+      <Typography align="center" variant="h2" gutterBottom>
+        URL・ドメインを入力してください
+      </Typography>
       <Paper component="form" className={classes.root}>
-        <InputBase 
-          onChange={handleChange}
-          value={url}
-          className={classes.input} 
-          placeholder="search..." 
-        />
-        <IconButton onClick={() => history.push(`/result/url?q=${url}`)} aria-label="search" className={classes.iconButton}>
+        <InputBase onChange={handleChange} value={url} className={classes.input} placeholder="search..." />
+        <IconButton
+          onClick={() => history.push(`/result/url?q=${url}`)}
+          aria-label="search"
+          className={classes.iconButton}
+        >
           <SearchIcon />
         </IconButton>
       </Paper>
     </>
   );
-}
+};
 
 export default SearchForm;
