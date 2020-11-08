@@ -1,14 +1,17 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme';
 import AppHeader from './components/AppHeader';
-import Main from './components/Main';
+import Router from './Router';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppHeader />
-      <Main />
+      <Container>
+        <Router />
+      </Container>
     </ThemeProvider>
   );
 };
