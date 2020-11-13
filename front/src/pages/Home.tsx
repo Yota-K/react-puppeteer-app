@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
@@ -24,12 +24,17 @@ const useStyles = makeStyles({
   iconButton: {
     padding: 10,
   },
+  errorMessage: {
+    color: '#f44336',
+    marginTop: '12px',
+  }
 });
 
 const Home: React.FC = () => {
   const classes = useStyles();
 
   const [url, setUrl] = React.useState<string>('');
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
   const [results, setResults] = React.useState<Results>({
     searchResult: null,
     title: '',
@@ -41,6 +46,20 @@ const Home: React.FC = () => {
       topPageDescription: '',
     },
   });
+
+  const handleClick = () => {
+    const reg = new RegExp('(https?://([\\w-]+\\.)+[\\w-]+(/[\\w- .?%&=]*)?)');
+
+    if (url === '') {
+      setErrorMessage('入力欄が空です');
+      return;
+    } else if(!url.match(reg)) {
+      setErrorMessage('※正しいURLではありません');
+      return;
+    } else {
+      invokeLamba();
+    }
+  }
 
   const invokeLamba = async () => {
     try {
@@ -61,8 +80,27 @@ const Home: React.FC = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage('');
     setUrl(e.target.value);
   };
+
+  useEffect(() => {
+    // MEMO: 40秒後に処理実行
+    const limit = setTimeout(() => {
+      // MEMO: 結果がfalseになった時のみ
+      if (!results.searchResult) {
+        setResults({ ...results, searchResult: null });
+        console.log('検索失敗');
+      }
+      return;
+    }, 40000);
+
+    /* MEMO: stateが変更されるたびに発火するので、
+    新たにタイマーがセットされる前に古いタイマー処理を破棄する */
+    return () => {
+      clearInterval(limit);
+    }
+  }, [results.searchResult])
 
   return (
     <Container maxWidth="sm">
@@ -79,15 +117,15 @@ const Home: React.FC = () => {
             placeholder="search..."
           />
           <IconButton
-            onClick={invokeLamba}
+            onClick={handleClick}
             aria-label="search"
             className={classes.iconButton}
           >
             <SearchIcon />
           </IconButton>
         </Paper>
+        <p className={classes.errorMessage}>{errorMessage}</p>
       </>}
-
       {results.searchResult !== null && SearchResult(results)}
     </Container>
   );
