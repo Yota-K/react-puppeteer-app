@@ -14,7 +14,8 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
   ],
-  "rules": {
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+  rules: {
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    quotes: ['error', 'single'],
   },
 };
