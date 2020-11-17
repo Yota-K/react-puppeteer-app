@@ -1,4 +1,5 @@
 export interface Results {
+  loading: boolean;
   searchResult: boolean | null;
   title: string;
   indexPageNum: number;

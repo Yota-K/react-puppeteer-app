@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchResult from '../components/result/SearchResult';
+import Loading from '../components/result/Loading';
 import { Results } from '../types'
 
 const useStyles = makeStyles({
@@ -36,6 +37,7 @@ const Home: React.FC = () => {
   const [url, setUrl] = React.useState<string>('');
   const [errorMessage, setErrorMessage] = React.useState<string>('');
   const [results, setResults] = React.useState<Results>({
+    loading: false,
     searchResult: null,
     title: '',
     indexPageNum: 0,
@@ -65,17 +67,16 @@ const Home: React.FC = () => {
     try {
       setUrl('');
 
-      // MEMO: falseに書き換えてローディングを表示
-      setResults({ ...results, searchResult: false });
+      // MEMO: trueに書き換えてローディングを表示
+      setResults({ ...results, loading: true, searchResult: null });
 
       const res = await axios.get(`${process.env.END_POINT_DEV}${url}`);
       const data = await res.data;
 
-      setResults({ ...results, ...data });
+      // MEMO: falseに書き換えてローディングを消す
+      setResults({ ...results, ...data, loading: false });
     } catch (er) {
       console.error(er);
-
-      setResults({ ...results, searchResult: false });
     }
   };
 
@@ -85,26 +86,24 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    // MEMO: 40秒後に処理実行
     const limit = setTimeout(() => {
-      // MEMO: 結果がfalseになった時のみ
-      if (!results.searchResult) {
-        setResults({ ...results, searchResult: null });
-        console.log('検索失敗');
+      // MEMO: 45秒以上経っても、チェック結果がtrueの時は処理中断
+      if (results.searchResult === false) {
+        setResults({ ...results, loading: false, searchResult: false });
       }
-      return;
-    }, 40000);
+    }, 45000);
 
     /* MEMO: stateが変更されるたびに発火するので、
     新たにタイマーがセットされる前に古いタイマー処理を破棄する */
     return () => {
       clearInterval(limit);
     }
-  }, [results.searchResult])
+    // MEMO: ローディング用のstateが変更されたときに実行
+  }, [results.loading])
 
   return (
     <Container maxWidth="sm">
-      {results.searchResult === null &&
+      {results.loading === false &&
       <>
         <Typography align="center" variant="h2" gutterBottom>
           URL・ドメインを入力してください
@@ -126,6 +125,7 @@ const Home: React.FC = () => {
         </Paper>
         <p className={classes.errorMessage}>{errorMessage}</p>
       </>}
+      {results.loading === true && <Loading />}
       {results.searchResult !== null && SearchResult(results)}
     </Container>
   );
