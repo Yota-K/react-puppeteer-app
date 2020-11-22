@@ -26,7 +26,7 @@ export const main = async (url: string) => {
 
     // 入力されたURLのタイトルを取得
     const eventUrl = await page.goto(url, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'networkidle2',
     })
     .catch((er) => {
       console.error(er);
