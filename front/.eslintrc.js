@@ -32,6 +32,7 @@ module.exports = {
   },
   rules: {
     // TypeScirpt なので prop-types は要らない
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'no-var-requires': 'false',
   },
 };
