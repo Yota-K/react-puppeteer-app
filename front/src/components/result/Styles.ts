@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles({
   root: {
     maxWidth: 600,
+    marginBottom: '30px',
   },
   ProgressContainer: {
     display: 'flex',
