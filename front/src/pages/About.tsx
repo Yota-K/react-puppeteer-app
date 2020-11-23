@@ -2,7 +2,6 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -19,20 +18,12 @@ const About: React.FC = () => {
     <Container>
       <Paper>
         <Container maxWidth="md">
-          <Typography variant="h1">運営者情報</Typography>
+          <Typography variant="h1">このアプリケーションについて</Typography>
           <Typography variant="body1" className={classes.margin}>
-            アプリケーションについてアプリケーションについてアプリケーションについて
-            アプリケーションについてアプリケーションについてアプリケーションについて
-            アプリケーションについてアプリケーションについてアプリケーションについて
-          </Typography>
-          <Typography variant="h2" className={classes.margin}>
-            開発者について
-          </Typography>
-          <Typography variant="body1">
-            <Link href="https://twitter.com/karukichi_yah">運営者Twitter</Link>
-          </Typography>
-          <Typography variant="body1">
-            <Link href="https://karukichi-blog.netlify.app/">技術ブログ</Link>
+            ウェブサイトの強さを計測するお遊びアプリケーションです。<br />
+            Reactとpuppeteerを使って何か作りたいと思い開発しました。<br />
+            サイトの強さはsite:でGoogle検索を行った際に表示されるサイトのインデックス数を取得して、<br />
+            サイトにインデックスしているページの数をそのまま戦闘力として表示してるだけです。
           </Typography>
         </Container>
       </Paper>
