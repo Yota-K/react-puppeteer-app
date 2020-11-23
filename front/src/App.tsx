@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme';
-import AppHeader from './components/AppHeader';
+import AppHeader from './components/header/AppHeader';
 import Router from './Router';
 
 const App = () => {
