@@ -19,7 +19,8 @@ const Failure: React.FC = () => {
   return (
     <>
       <Typography variant="h2" align="center" className={classes.resultTitle}>
-        検索に失敗しました<br/>
+        検索に失敗しました
+        <br />
         URLが間違っていないか確認してください
       </Typography>
     </>

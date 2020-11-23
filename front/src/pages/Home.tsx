@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchResult from '../components/result/SearchResult';
 import Loading from '../components/result/Loading';
-import { Results } from '../types'
+import { Results } from '../types';
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   errorMessage: {
     color: '#f44336',
     marginTop: '12px',
-  }
+  },
 });
 
 const Home: React.FC = () => {
@@ -55,13 +55,13 @@ const Home: React.FC = () => {
     if (url === '') {
       setErrorMessage('入力欄が空です');
       return;
-    } else if(!url.match(reg)) {
+    } else if (!url.match(reg)) {
       setErrorMessage('※正しいURLではありません');
       return;
     } else {
       invokeLamba();
     }
-  }
+  };
 
   const invokeLamba = async () => {
     try {
@@ -97,34 +97,26 @@ const Home: React.FC = () => {
     新たにタイマーがセットされる前に古いタイマー処理を破棄する */
     return () => {
       clearInterval(limit);
-    }
+    };
     // MEMO: ローディング用のstateが変更されたときに実行
-  }, [results.loading])
+  }, [results.loading]);
 
   return (
     <Container maxWidth="sm">
-      {results.loading === false &&
-      <>
-        <Typography align="center" variant="h2" gutterBottom>
-          URL・ドメインを入力してください
-        </Typography>
-        <Paper component="form" className={classes.root}>
-          <InputBase
-            onChange={handleChange}
-            value={url}
-            className={classes.input}
-            placeholder="search..."
-          />
-          <IconButton
-            onClick={handleClick}
-            aria-label="search"
-            className={classes.iconButton}
-          >
-            <SearchIcon />
-          </IconButton>
-        </Paper>
-        <p className={classes.errorMessage}>{errorMessage}</p>
-      </>}
+      {results.loading === false && (
+        <>
+          <Typography align="center" variant="h2" gutterBottom>
+            URL・ドメインを入力してください
+          </Typography>
+          <Paper component="form" className={classes.root}>
+            <InputBase onChange={handleChange} value={url} className={classes.input} placeholder="search..." />
+            <IconButton onClick={handleClick} aria-label="search" className={classes.iconButton}>
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+          <p className={classes.errorMessage}>{errorMessage}</p>
+        </>
+      )}
       {results.loading === true && <Loading />}
       {results.searchResult !== null && SearchResult(results)}
     </Container>

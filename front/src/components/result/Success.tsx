@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { useStyles } from './Styles';
-import { Results } from '../../types'
+import { Results } from '../../types';
 
 interface Props {
   results: Results;
@@ -32,7 +32,9 @@ const Success: React.FC<Props> = ({ results }) => {
         <CardMedia className={classes.media} image={dataImage} title={`${results.title}のスクリーンショット`} />
         <CardContent>
           <Typography variant="h3" className={classes.h3}>
-            <Link href={results.siteInfo.topPageUrl} target="_blank" rel="noopener">{results.siteInfo.topPageTitle}</Link>
+            <Link href={results.siteInfo.topPageUrl} target="_blank" rel="noopener">
+              {results.siteInfo.topPageTitle}
+            </Link>
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {results.siteInfo.topPageDescription}

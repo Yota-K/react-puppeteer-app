@@ -1,9 +1,9 @@
 import React from 'react';
 import Success from './Success';
 import Failure from './Failure';
-import { Results } from '../../types'
+import { Results } from '../../types';
 
-const SearchResult: React.FC<Results> = ( results ) => {
+const SearchResult: React.FC<Results> = (results) => {
   return (
     <>
       {results.searchResult === true && <Success results={results} />}

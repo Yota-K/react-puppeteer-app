@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: drawerWidth,
     },
     drawerHeader: {
-     display: 'flex',
+      display: 'flex',
       alignItems: 'center',
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       letterSpacing: '0.6px',
     },
-  }),
+  })
 );
 
 const AppHeader = () => {
@@ -80,7 +80,7 @@ const AppHeader = () => {
 
   return (
     <>
-      <AppBar 
+      <AppBar
         position="static"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -104,7 +104,7 @@ const AppHeader = () => {
         </Toolbar>
       </AppBar>
 
-     <Drawer
+      <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -121,15 +121,18 @@ const AppHeader = () => {
         <Divider />
         <List>
           <ListItem button>
-            <ListItemText>このアプリンについて</ListItemText>
-          </ListItem>
-          <ListItem button>
             <ListItemText>
-              <Link href="/about" color="inherit" underline="none">運営者情報</Link>
+              <Link href="/about" color="inherit" underline="none">
+                このアプリについて
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem button>
-            <ListItemText>プライバシーポリシー</ListItemText>
+            <ListItemText>
+              <Link href="/info" color="inherit" underline="none">
+                運営者情報
+              </Link>
+            </ListItemText>
           </ListItem>
         </List>
       </Drawer>
